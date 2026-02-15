@@ -10,17 +10,17 @@ const wineMenu = {
         { id: "022", name: "Sauvignon Blanc, Echo Bay", region: "Marlborough, NZ", year: "2024", price: 13, altitude: "50m", soil: "Stony Loam", fact: "Hole in the Cloud.", coords: [-41.51, 173.96], pitch: "Tropical explosion of passionfruit and lime with zesty, puckering acidity.", pairings: ["Tuna Tartare", "Crispy Skin Salmon", "Shrimp Cocktail"], vitals: { grapes: "Sauvignon Blanc", palate: "Passionfruit, Guava, Key Lime", chartData: [2, 5, 1, 3, 1] } },
         { id: "023", name: "Pinot Grigio, Hofstatter", region: "Alto Adige, Italy", year: "2023", price: 17, altitude: "450m", soil: "Gravel/Porphyry", fact: "Steep terraces.", coords: [46.33, 11.30], pitch: "Alpine-grown; offering a crisp saline bite and mountain-fresh pear notes.", pairings: ["Branzino", "Octopus", "Caesar Salad"], vitals: { grapes: "Pinot Grigio", palate: "Bartlett Pear, Saline, White Pepper", chartData: [2, 5, 1, 3, 1] } },
         { id: "025", name: "Chardonnay, Neyers 304", region: "Sonoma, CA", year: "2023", price: 18, altitude: "100m", soil: "Gravelly Loam", fact: "304 grade steel.", coords: [38.29, -122.45], pitch: "Un-oaked and pure; bright tropical pineapple fruit that is lean and crisp.", pairings: ["Jumbo Lump Crab Cake", "Roasted Chicken", "Crispy Skin Salmon"], vitals: { grapes: "Chardonnay", palate: "Pineapple, Starfruit, Lemon Curd", chartData: [3, 4, 1, 4, 1] } },
-        { id: "203", name: "Chardonnay, Flowers", region: "Sonoma Coast, CA", year: "2023", price: 35, coravin: true, altitude: "400m", soil: "Schist", fact: "Coastal pioneer.", coords: [38.54, -123.21], pitch: "Coastal acidity meets elegant oak with a distinct sea-salt finish.", pairings: ["Cavatelli with Lobster", "Branzino", "Baked Mac & Cheese"], vitals: { grapes: "Chardonnay", palate: "Meyer Lemon, Sea Salt, Roasted Pear", chartData: [4, 4, 1, 4, 3] } },
+        { id: "203", name: "Chardonnay, Flowers", region: "Sonoma Coast, CA", year: "2023", price: 35, altitude: "400m", soil: "Schist", fact: "Coastal pioneer.", coords: [38.54, -123.21], pitch: "Coastal acidity meets elegant oak with a distinct sea-salt finish.", pairings: ["Cavatelli with Lobster", "Branzino", "Baked Mac & Cheese"], vitals: { grapes: "Chardonnay", palate: "Meyer Lemon, Sea Salt, Roasted Pear", chartData: [4, 4, 1, 4, 3] } },
         { id: "034", name: "Chardonnay, Wm. Fevre", region: "Chablis, France", year: "2023", price: 22, altitude: "200m", soil: "Kimmeridgian", fact: "Oyster fossils.", coords: [47.81, 3.80], pitch: "Lean, laser-focused acidity with a crushed-seashell mineral finish.", pairings: ["Oysters on the Half Shell", "Shrimp Cocktail", "Octopus"], vitals: { grapes: "Chardonnay", palate: "Chalk, Green Apple, Lemon Peel", chartData: [3, 5, 1, 3, 1] } }
     ],
     "Red": [
         { id: "043", name: "Pinot Noir, Ken Wright", region: "Willamette, OR", year: "2024", price: 18, altitude: "150m", soil: "Volcanic Jory", fact: "AVA pioneer.", coords: [45.31, -123.00], pitch: "Delicate and earthy; showcases tart rainier cherry and volcanic soil notes.", pairings: ["Truffle Potato Gratin", "Harvest Salad", "Crispy Brussels Sprouts"], vitals: { grapes: "Pinot Noir", palate: "Tart Cherry, Raspberry, Forest Floor", chartData: [2, 4, 2, 3, 1] } },
-        { id: "585", name: "Pinot Noir, Shea", region: "Willamette, OR", year: "2023", price: 44, coravin: true, altitude: "160m", soil: "Sandstone", fact: "Famous vineyard.", coords: [45.34, -123.05], pitch: "Muscular Pinot with dark floral notes and a silky, structured mouthfeel.", pairings: ["Roasted Chicken", "Grilled Veal Chop", "Beef Wellington"], vitals: { grapes: "Pinot Noir", palate: "Black Cherry, Violets, Cola", chartData: [3, 3, 3, 4, 2] } },
+        { id: "585", name: "Pinot Noir, Shea", region: "Willamette, OR", year: "2023", price: 44, altitude: "160m", soil: "Sandstone", fact: "Famous vineyard.", coords: [45.34, -123.05], pitch: "Muscular Pinot with dark floral notes and a silky, structured mouthfeel.", pairings: ["Roasted Chicken", "Grilled Veal Chop", "Beef Wellington"], vitals: { grapes: "Pinot Noir", palate: "Black Cherry, Violets, Cola", chartData: [3, 3, 3, 4, 2] } },
         { id: "019", name: "Sangiovese, Rodano", region: "Tuscany, Italy", year: "2021", price: 16, altitude: "300m", soil: "Galestro", fact: "16th-century farm.", coords: [43.46, 11.23], pitch: "Rustic and savory; tastes like dusty cherries and dried oregano.", pairings: ["Steak Tartare", "Caesar Salad", "Sticky Chicken Wings"], vitals: { grapes: "Sangiovese", palate: "Sour Cherry, Oregano, Black Tea", chartData: [3, 5, 4, 4, 1] } },
         { id: "026", name: "Super Tuscan, Montepeloso", region: "Tuscany, Italy", year: "2024", price: 18, altitude: "50m", soil: "Silty Clay", fact: "Maremma blend.", coords: [42.98, 10.66], pitch: "Sun-drenched and bold with rich layers of blackberry and dark cocoa.", pairings: ["Grilled Veal Chop", "Beef Wellington", "Baked Mac & Cheese"], vitals: { grapes: "Cab/Sangio/Merlot", palate: "Blackberry, Cocoa, Sage", chartData: [4, 3, 4, 4, 3] } },
-        { id: "843", name: "Super Tuscan, Gaja", region: "Tuscany, Italy", year: "2023", price: 37, coravin: true, altitude: "80m", soil: "Marine Clay", fact: "Italian legend.", coords: [43.21, 10.59], pitch: "Explosive dark fruit backed by firm tannins and an espresso bean finish.", pairings: ["20 oz Prime Bone-In Ribeye", "8 oz Filet Mignon", "Beef Wellington"], vitals: { grapes: "Merlot/Syrah/Sangio", palate: "Plum, Espresso, Cedar", chartData: [5, 4, 4, 5, 4] } },
+        { id: "843", name: "Super Tuscan, Gaja", region: "Tuscany, Italy", year: "2023", price: 37, altitude: "80m", soil: "Marine Clay", fact: "Italian legend.", coords: [43.21, 10.59], pitch: "Explosive dark fruit backed by firm tannins and an espresso bean finish.", pairings: ["20 oz Prime Bone-In Ribeye", "8 oz Filet Mignon", "Beef Wellington"], vitals: { grapes: "Merlot/Syrah/Sangio", palate: "Plum, Espresso, Cedar", chartData: [5, 4, 4, 5, 4] } },
         { id: "045", name: "Cabernet, Post & Beam", region: "Napa, CA", year: "2022", price: 24, altitude: "120m", soil: "Gravelly Loam", fact: "Far Niente family.", coords: [38.44, -122.38], pitch: "Classic Napa Cabernet with velvety tannins and a finish of vanilla spice.", pairings: ["8 oz Filet Mignon", "Roasted Broccolini", "Beef Wellington"], vitals: { grapes: "Cabernet Sauvignon", palate: "Black Cherry, Vanilla, Tobacco", chartData: [5, 3, 4, 5, 4] } },
-        { id: "421", name: "Cabernet, Heitz Cellars", region: "Napa, CA", year: "2021", price: 45, coravin: true, altitude: "130m", soil: "Volcanic Loam", fact: "St. Helena icon.", coords: [38.50, -122.46], pitch: "High-structured and powerful with a unique, cooling finish of mint.", pairings: ["20 oz Prime Bone-In Ribeye", "Beef Wellington", "Truffle Potato Gratin"], vitals: { grapes: "Cabernet Sauvignon", palate: "Blackcurrant, Eucalyptus, Lead Pencil", chartData: [5, 4, 5, 4, 4] } }
+        { id: "421", name: "Cabernet, Heitz Cellars", region: "Napa, CA", year: "2021", price: 45, altitude: "130m", soil: "Volcanic Loam", fact: "St. Helena icon.", coords: [38.50, -122.46], pitch: "High-structured and powerful with a unique, cooling finish of mint.", pairings: ["20 oz Prime Bone-In Ribeye", "Beef Wellington", "Truffle Potato Gratin"], vitals: { grapes: "Cabernet Sauvignon", palate: "Blackcurrant, Eucalyptus, Lead Pencil", chartData: [5, 4, 5, 4, 4] } }
     ],
     "Rose": [
         { id: "016", name: "Boulay, Sibylle", region: "Sancerre, France", year: "2024", price: 22, altitude: "250m", soil: "Limestone", fact: "Pinot Noir Rosé.", coords: [47.33, 2.81], pitch: "Structured Sancerre Pinot Noir—crisp, mineral-driven, and gastronomic.", pairings: ["Harvest Salad", "Octopus", "Branzino"], vitals: { grapes: "Pinot Noir", palate: "Wild Strawberry, Chalk, Citrus", chartData: [2, 5, 1, 3, 1] } },
@@ -44,7 +44,7 @@ function getStudyNote(vitals) {
     if (d[1] >= 4) notes.push("⚡ <b>Acidity:</b> Triggers instant salivation on the <b>sides of the tongue</b>.");
     if (d[2] >= 4) notes.push("🏗️ <b>Tannin:</b> Creates a drying 'velcro' grip on the <b>gums and inner cheeks</b>.");
     if (d[3] >= 4) notes.push("🔥 <b>Alcohol:</b> Leaves a distinct warming glow in the <b>back of the throat</b>.");
-    if (d[4] >= 4) notes.push("🪵 <b>Oak:</b> Adds a sweet spice texture felt on the <b>very back of the palate</b>.");
+    if (d[4] >= 4) notes.push("🪵 <b>Oak/Spice:</b> Adds a sweet spice texture felt on the <b>very back of the palate</b>.");
     return notes.length > 0 ? notes.join('<div style="margin:10px 0; border-bottom:1px solid #eee;"></div>') : "✨ <b>Harmonious:</b> Structural elements are light; moves across the tongue without friction.";
 }
 
@@ -60,7 +60,7 @@ function renderMenu(searchTerm = "") {
                 <div class="wine-item" onclick="openTerroir('${w.id}')">
                     <div class="wine-id">${w.id}</div>
                     <div class="wine-main">
-                        <strong>${w.name} ${w.coravin ? '🍷' : ''}</strong>
+                        <strong>${w.name}</strong>
                         <div class="pitch-snippet">${w.pitch}</div>
                     </div>
                     <div class="wine-year">${w.year || 'NV'}</div>
@@ -73,7 +73,8 @@ function renderMenu(searchTerm = "") {
 }
 
 function openTerroir(id) {
-    const wine = Object.values(wineMenu).flat().find(w => w.id === id);
+    const category = Object.keys(wineMenu).find(cat => wineMenu[cat].some(w => w.id === id));
+    const wine = wineMenu[category].find(w => w.id === id);
     const pairingHtml = wine.pairings.map(item => `<span class="pairing-tag">${item}</span>`).join('');
 
     document.getElementById('modalHeader').innerHTML = `
@@ -84,11 +85,11 @@ function openTerroir(id) {
     document.getElementById('modalFooter').innerHTML = `
         <div class="palate-box">${wine.vitals.palate}</div>
         <div class="pairing-section">
-            <h4>🍽️ RECOMMENDED MENU PAIRINGS</h4>
+            <h4 style="font-size:0.7rem; color:#999; letter-spacing:1px;">🍽️ RECOMMENDED MENU PAIRINGS</h4>
             <div class="pairing-container">${pairingHtml}</div>
         </div>
         <div class="study-guide-box">
-            <h4 style="margin-top:0;">🎓 PALATE PHYSICS CHECKLIST</h4>
+            <h4 style="margin-top:0; color:#856404; font-size:0.8rem;">🎓 PALATE PHYSICS CHECKLIST</h4>
             <div class="physics-note">${getStudyNote(wine.vitals)}</div>
         </div>
         <div class="stats-grid">
@@ -99,19 +100,37 @@ function openTerroir(id) {
 
     document.getElementById('terroirModal').classList.remove('hidden');
 
+    const themes = {
+        "Sparkling": { bg: 'rgba(197, 160, 89, 0.4)', border: '#C5A059' },
+        "Whites": { bg: 'rgba(189, 183, 107, 0.4)', border: '#BDB76B' },
+        "Red": { bg: 'rgba(74, 14, 14, 0.4)', border: '#4A0E0E' },
+        "Rose": { bg: 'rgba(255, 182, 193, 0.4)', border: '#FF69B4' },
+        "Sweet & Port": { bg: 'rgba(139, 69, 19, 0.4)', border: '#8B4513' }
+    };
+    const theme = themes[category] || themes["Red"];
+
     if (chart) chart.destroy();
     chart = new Chart(document.getElementById('wineChart'), {
         type: 'radar',
         data: {
-            labels: ['Body', 'Acidity', 'Tannin', 'Alcohol', 'Oak'],
+            labels: ['Body', 'Acidity', 'Tannin', 'Alcohol', 'Oak/Spice'],
             datasets: [{
                 data: wine.vitals.chartData,
-                backgroundColor: 'rgba(74, 14, 14, 0.4)',
-                borderColor: '#4A0E0E',
+                backgroundColor: theme.bg,
+                borderColor: theme.border,
                 pointBackgroundColor: '#C5A059'
             }]
         },
-        options: { scales: { r: { min: 0, max: 5, ticks: { display: false } } }, plugins: { legend: { display: false } } }
+        options: { 
+            scales: { 
+                r: { 
+                    min: 0, max: 5, ticks: { display: false },
+                    pointLabels: { font: { weight: 'bold' } }
+                } 
+            }, 
+            plugins: { legend: { display: false } },
+            maintainAspectRatio: false
+        }
     });
 
     setTimeout(() => {
