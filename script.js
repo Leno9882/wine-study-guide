@@ -104,6 +104,7 @@ function openTerroir(id) {
     const wine = wineMenu[category].find(w => w.id === id);
     const compHtml = wine.vitals.composition.map(c => `<li>• ${c}</li>`).join('');
 
+    // Highlighted DOC and Methodology logic in the Header
     document.getElementById('modalHeader').innerHTML = `
         <div style="text-align: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
             <small style="color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 800;">

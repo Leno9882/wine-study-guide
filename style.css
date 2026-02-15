@@ -63,7 +63,7 @@ body { background: var(--paper); color: var(--text); font-family: 'Helvetica Neu
     transition: 0.2s; 
     background: white; 
 }
-.wine-item:hover { background: #fcfcfc; }
+.wine-item:hover { background: #fcfcfc; border-left: 4px solid var(--wine-red); }
 .wine-id { font-weight: bold; color: var(--wine-red); align-self: start; padding-top: 2px; }
 
 .pitch-snippet { 
@@ -75,6 +75,19 @@ body { background: var(--paper); color: var(--text); font-family: 'Helvetica Neu
     padding-left: 12px; 
 }
 .wine-year { text-align: right; color: #999; font-weight: 500; }
+
+/* --- Interactive Label Styles (New) --- */
+.label-link {
+    color: var(--gold);
+    text-decoration: underline dotted;
+    cursor: pointer;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+.label-link:hover {
+    color: var(--wine-red);
+    text-decoration: underline solid;
+}
 
 /* --- Barrel Modal Styles --- */
 .modal { 
@@ -107,19 +120,19 @@ body { background: var(--paper); color: var(--text); font-family: 'Helvetica Neu
 /* --- Method Button (Chrome Stave) --- */
 .method-btn {
     background: #333;
-    border: none;
+    border: 1px solid var(--chrome);
     color: white;
-    padding: 6px 16px;
+    padding: 8px 18px;
     border-radius: 2px;
     cursor: pointer;
     font-weight: 800;
     font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     animation: pulse-chrome 2.5s infinite;
     transition: all 0.3s ease;
 }
-.method-btn:hover { background: var(--wine-red); transform: translateY(-1px); }
+.method-btn:hover { background: var(--wine-red); border-color: var(--wine-red); transform: translateY(-1px); }
 
 @keyframes pulse-chrome {
     0% { box-shadow: 0 0 0 0 rgba(176, 176, 176, 0.4); }
