@@ -37,32 +37,46 @@ const wineMenu = {
 
 let map, chart;
 
+function explainClassification(label) {
+    const definitions = {
+        "DOC": "Denominazione di Origine Controllata: Guarantees origin and production standards.",
+        "DOCG": "Denominazione di Origine Controllata e Garantita: Italy's highest quality tier.",
+        "AOC": "Appellation d'Origine Contrôlée: French certification for origin and methods.",
+        "AVA": "American Viticultural Area: Identifies a specific US grape-growing region.",
+        "IGT": "Indicazione Geografica Tipica: High-quality Italian wine with stylistic freedom.",
+        "IGP": "Indication Géographique Protégée: Protected European regional status."
+    };
+    let match = "A legal designation ensuring origin and production quality.";
+    for (let key in definitions) { if (label.includes(key)) { match = definitions[key]; break; } }
+    alert(`📜 LABEL INTEL: ${label}\n\n${match}`);
+}
+
 function explainMethod(methodName) {
     const methods = {
-        "Traditional Method": "Second fermentation happens in the bottle, creating fine bubbles and bread-like flavors.",
-        "Méthode Champenoise": "The strictly regulated Traditional Method used specifically in Champagne, France.",
-        "Charmat Method": "Second fermentation occurs in large tanks to preserve fresh, fruity primary aromas.",
-        "Stainless Steel": "Fermented in steel to keep the wine crisp and bright, showing the pure grape character.",
-        "Unoaked (Steel)": "Pure fruit expression without the vanilla or butter notes often added by wood.",
-        "French Oak Aged": "Aging in high-quality French wood adds subtle spice, tannin, and a silken texture.",
-        "Large Oak Cask": "Massive barrels that allow oxygen exchange without overpowering the wine with wood flavor.",
-        "Oak Barrique Aged": "Small barrels that impart bold flavors of vanilla, tobacco, and cocoa.",
-        "Direct Press": "Immediate pressing of red grapes to extract a pale pink color and light body.",
-        "Estufagem (Heated/Fortified)": "Wine is heated and oxidized in Madeira, making it virtually immortal.",
-        "Botrytised Selection": "Made from grapes affected by 'Noble Rot', concentrating sugars into honeyed sweetness.",
-        "Fortified / Oxidized": "Alcohol is added to stop fermentation, resulting in rich, nutty caramel notes."
+        "Traditional Method": "Fermented in-bottle. Adds complexity and yeast notes.",
+        "Méthode Champenoise": "The specific Traditional Method used in Champagne.",
+        "Charmat Method": "Fermented in tanks to keep fruit fresh and bright.",
+        "Stainless Steel": "Keeps the wine crisp, bright, and pure.",
+        "Unoaked (Steel)": "Pure fruit without any wood influence.",
+        "French Oak Aged": "Adds spice, tannin, and a silken texture.",
+        "Large Oak Cask": "Softens wine without overpowering it with wood flavor.",
+        "Oak Barrique Aged": "Imparts bold flavors of vanilla, tobacco, and cocoa.",
+        "Direct Press": "Gently pressed for a pale color and delicate body.",
+        "Estufagem (Heated/Fortified)": "Heated and oxidized; makes the wine immortal.",
+        "Botrytised Selection": "Made from 'Noble Rot' grapes for intense sweetness.",
+        "Fortified / Oxidized": "Rich, nutty, and caramel notes from added spirits."
     };
-    alert(`🔍 ${methodName}:\n\n${methods[methodName] || "A specialized winemaking technique."}`);
+    alert(`🔍 PROCESS: ${methodName}\n\n${methods[methodName] || "A specialized winemaking technique."}`);
 }
 
 function getStudyNote(vitals) {
     const d = vitals.chartData; 
     let notes = [];
-    if (d[0] >= 4) notes.push("⚖️ <b>Body:</b> Heavy weight on the tongue.");
-    if (d[1] >= 4) notes.push("⚡ <b>Acidity:</b> High salivation on the sides.");
-    if (d[2] >= 4) notes.push("🏗️ <b>Tannin:</b> Drying grip on the gums.");
-    if (d[3] >= 4) notes.push("🔥 <b>Alcohol:</b> Warmth in the back of the throat.");
-    return notes.length > 0 ? notes.join('<br>') : "✨ Harmonious balance.";
+    if (d[0] >= 4) notes.push("⚖️ <b>Body:</b> Heavy weight/viscosity.");
+    if (d[1] >= 4) notes.push("⚡ <b>Acidity:</b> High, crisp salivation.");
+    if (d[2] >= 4) notes.push("🏗️ <b>Tannin:</b> Firm grip on the palate.");
+    if (d[3] >= 4) notes.push("🔥 <b>Alcohol:</b> Noticeable warmth/strength.");
+    return notes.length > 0 ? notes.join('<br>') : "✨ Balanced and elegant.";
 }
 
 function renderMenu(searchTerm = "") {
@@ -88,44 +102,42 @@ function renderMenu(searchTerm = "") {
 function openTerroir(id) {
     const category = Object.keys(wineMenu).find(cat => wineMenu[cat].some(w => w.id === id));
     const wine = wineMenu[category].find(w => w.id === id);
-    const compHtml = wine.vitals.composition.map(c => `<li>${c}</li>`).join('');
+    const compHtml = wine.vitals.composition.map(c => `<li>• ${c}</li>`).join('');
 
-    // Updated Barrel Header: Added a "Cask ID" badge for aesthetic
     document.getElementById('modalHeader').innerHTML = `
-        <div style="text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
-            <div style="display:flex; justify-content:center; align-items:center; gap: 10px; margin-bottom: 5px;">
-                <div style="height:1px; background:var(--gold); flex-grow:1;"></div>
-                <small style="color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 800;">
-                    CASK NO. ${wine.id}
-                </small>
-                <div style="height:1px; background:var(--gold); flex-grow:1;"></div>
-            </div>
-            <h1 style="margin: 10px 0; font-family: 'Georgia', serif; font-size: 2rem; color: var(--wine-red);">${wine.name}</h1>
+        <div style="text-align: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+            <small style="color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 800;">
+                TEAM RAMSAY BOSTON • CASK ${wine.id}
+            </small>
+            <h1 style="margin: 10px 0; font-family: 'Georgia', serif; font-size: 2.2rem; color: var(--wine-red);">${wine.name}</h1>
             <p style="margin: 0; color: #666; font-style: italic;">
-                ${wine.region} • ${wine.classification}
+                ${wine.region} • 
+                <span class="label-link" onclick="explainClassification('${wine.classification}')">
+                    ${wine.classification}
+                </span>
             </p>
             <div style="margin-top: 15px;">
                  <button class="method-btn" onclick="event.stopPropagation(); explainMethod('${wine.method}')">${wine.method}</button>
             </div>
+            <ul style="list-style: none; padding: 0; margin: 15px 0 0 0; color: var(--gold); font-weight: bold; font-size: 0.85rem; display: flex; justify-content: center; gap: 15px;">
+                ${compHtml}
+            </ul>
         </div>
-        <ul style="list-style: none; padding: 0; margin: 20px 0; color: var(--gold); font-weight: bold; font-size: 0.95rem; text-align: center;">
-            ${compHtml}
-        </ul>
     `;
 
     document.getElementById('modalFooter').innerHTML = `
         <div class="palate-box">${wine.vitals.palate}</div>
         <div class="study-guide-box">
-            <h4>🎓 SOMMELIER CHECKLIST</h4>
-            <p><strong>Climate:</strong> ${wine.climate}</p>
-            <p>${getStudyNote(wine.vitals)}</p>
+            <h4 style="margin:0 0 10px 0; color: var(--gold); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">🎓 Kitchen Intel</h4>
+            <p style="margin: 5px 0;"><strong>Climate:</strong> ${wine.climate}</p>
+            <p style="margin: 5px 0;">${getStudyNote(wine.vitals)}</p>
         </div>
         <div class="stats-grid">
-            <div class="stat-card"><small>SOIL</small><strong>${wine.soil}</strong></div>
-            <div class="stat-card"><small>ALTITUDE</small><strong>${wine.altitude}</strong></div>
+            <div class="stat-card"><small>Soil Type</small><strong>${wine.soil}</strong></div>
+            <div class="stat-card"><small>Elevation</small><strong>${wine.altitude}</strong></div>
         </div>
         <div class="pairing-section">
-            <h4>Perfect Pairings</h4>
+             <h4>Perfect Pairings</h4>
             <div class="pairing-container">
                 ${wine.pairings.map(p => `<span class="pairing-tag">${p}</span>`).join('')}
             </div>
@@ -136,30 +148,30 @@ function openTerroir(id) {
 
     setTimeout(() => {
         if (chart) chart.destroy();
-        const ctx = document.getElementById('wineChart').getContext('2d');
         const themeColor = (category === "Red" || category === "Sweet & Port") ? "#4A0E0E" : "#C5A059";
         
-        chart = new Chart(ctx, {
+        chart = new Chart(document.getElementById('wineChart'), {
             type: 'radar',
             data: {
                 labels: ['Body', 'Acidity', 'Tannin', 'Alcohol', 'Oak'],
                 datasets: [{
                     data: wine.vitals.chartData,
-                    backgroundColor: 'rgba(197, 160, 89, 0.2)',
+                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
                     borderColor: themeColor,
-                    pointBackgroundColor: themeColor
+                    pointBackgroundColor: themeColor,
+                    borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { r: { min: 0, max: 5, ticks: { display: false } } },
+                scales: { r: { min: 0, max: 5, ticks: { display: false }, grid: { color: '#eee' }, angleLines: { color: '#eee' } } },
                 plugins: { legend: { display: false } }
             }
         });
 
         if (map) map.remove();
-        map = L.map('map-container').setView(wine.coords, 11);
+        map = L.map('map-container', { zoomControl: false }).setView(wine.coords, 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         L.marker(wine.coords).addTo(map);
     }, 300);

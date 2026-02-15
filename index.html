@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boston Wine Study Guide</title>
+    <title>Team Ramsay’s Kitchen Boston</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
-<body>z
+<body>
 
     <nav class="navbar">
-        <div class="logo">WINE<span>STUDY</span></div>
-        <input type="text" id="wineSearch" placeholder="Search ID or Name...">
+        <div class="logo">TEAM<span> RAMSAY'S KITCHEN BOSTON</span></div>
+        <input type="text" id="wineSearch" placeholder="Search ID or Varietal...">
     </nav>
 
     <div id="menu-container"></div>
 
-    <div id="terroirModal" class="modal hidden">
-        <div class="modal-content">
+    <div id="terroirModal" class="modal hidden" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div id="modalHeader"></div>
             <div class="visual-grid">
-                <div class="chart-container">
-                    <canvas id="wineChart"></canvas>
-                </div>
+                <div class="chart-container"><canvas id="wineChart"></canvas></div>
                 <div id="map-container"></div>
             </div>
             <div id="modalFooter"></div>
