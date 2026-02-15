@@ -3,112 +3,119 @@
     --gold: #C5A059;
     --paper: #FDFBF7;
     --text: #2D3436;
+    --oak: #6b4423;
+    --steel: #5d5d5d;
 }
 
 body { background: var(--paper); color: var(--text); font-family: system-ui, sans-serif; margin: 0; }
 
+/* Navbar Styles */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: white; border-bottom: 2px solid #eee; position: sticky; top: 0; z-index: 1000; }
 .logo { font-size: 1.4rem; font-weight: 800; color: var(--wine-red); letter-spacing: 1px; }
 .logo span { color: var(--gold); }
-#wineSearch { padding: 10px 20px; border-radius: 20px; border: 1px solid #ddd; width: 250px; outline: none; }
+#wineSearch { padding: 10px 20px; border-radius: 20px; border: 1px solid #ddd; width: 250px; outline: none; transition: border-color 0.3s; }
+#wineSearch:focus { border-color: var(--gold); }
 
+/* Menu List Styles */
 .category-header { background: #eee; padding: 12px 5%; margin: 0; font-size: 0.8rem; text-transform: uppercase; color: #666; }
 .wine-item { display: grid; grid-template-columns: 60px 1fr 80px 80px; padding: 18px 5%; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; background: white; }
 .wine-item:hover { background: #fffafa; }
 .wine-id { font-weight: bold; color: var(--gold); }
 
-.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(4px); }
-.modal-content { background: white; width: 95%; max-width: 850px; padding: 30px; border-radius: 25px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
-.close-modal { position: absolute; right: 25px; top: 15px; font-size: 2rem; cursor: pointer; color: #aaa; }
+.pitch-snippet { 
+    font-size: 0.85rem; color: #666; font-style: italic; margin-top: 6px; 
+    border-left: 3px solid var(--gold); padding-left: 12px; transition: color 0.3s;
+}
+.wine-item:hover .pitch-snippet { color: var(--wine-red); }
 
+/* Barrel Modal Styles */
+.modal { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.85); display: flex; justify-content: center; 
+    align-items: center; z-index: 2000; backdrop-filter: blur(4px); 
+}
+
+.modal-content { 
+    background: white; 
+    /* Subtle Wood Grain Pattern */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+        url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    width: 95%; 
+    max-width: 850px; 
+    padding: 45px; 
+    /* Barrel Shape: Tapered top/bottom and bulged sides */
+    border-radius: 120px / 30px; 
+    max-height: 90vh; 
+    overflow-y: auto; 
+    position: relative; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    /* Steel Hoops */
+    border-top: 10px solid var(--steel);
+    border-bottom: 10px solid var(--steel);
+}
+
+.close-modal { position: absolute; right: 35px; top: 20px; font-size: 2rem; cursor: pointer; color: #aaa; transition: color 0.2s; }
+.close-modal:hover { color: var(--wine-red); }
+
+/* Method Button - Styled like a Stave/Metal Plate */
+.method-btn {
+    background: var(--steel);
+    border: none;
+    color: white;
+    padding: 4px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    animation: pulse-steel 2.5s infinite;
+    transition: all 0.3s ease;
+}
+.method-btn:hover { background: var(--wine-red); transform: translateY(-1px); }
+
+@keyframes pulse-steel {
+    0% { box-shadow: 0 0 0 0 rgba(93, 93, 93, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(93, 93, 93, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(93, 93, 93, 0); }
+}
+
+/* Modal Content Layout */
 .visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-.chart-container { background: #f9f9f9; border-radius: 12px; padding: 20px; height: 300px; display: flex; justify-content: center; align-items: center; position: relative; }
+.chart-container { background: rgba(249, 249, 249, 0.7); border-radius: 12px; padding: 20px; height: 300px; display: flex; justify-content: center; align-items: center; position: relative; border: 1px solid #eee; }
 #map-container { height: 300px; border-radius: 12px; border: 1px solid #ddd; }
 
-.palate-box { background: var(--wine-red); color: white; padding: 18px; border-radius: 12px; text-align: center; font-size: 1.2rem; font-family: 'Georgia', serif; margin-bottom: 15px; font-weight: bold; }
-.study-guide-box { background: #fffceb; border-left: 5px solid #ffcc00; padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 15px; border: 1px solid #eee; }
-.pitch-snippet { font-size: 0.85rem; color: #666; font-style: italic; margin-top: 6px; border-left: 3px solid var(--gold); padding-left: 12px; }
-.pairing-tag { background: #f4f4f4; color: var(--wine-red); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; border: 1px solid #e0e0e0; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
+.palate-box { 
+    background: var(--wine-red); color: white; padding: 18px; border-radius: 12px; 
+    text-align: center; font-size: 1.2rem; font-family: 'Georgia', serif; 
+    margin-bottom: 15px; font-weight: bold; box-shadow: 0 4px 15px rgba(74, 14, 14, 0.2); 
+}
 
+.study-guide-box { background: #fffceb; border-left: 5px solid var(--gold); padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 15px; border: 1px solid #eee; }
+
+/* Stats & Pairings */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.stat-card { background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #eee; }
-.stat-card small { display: block; color: var(--gold); font-weight: bold; font-size: 0.65rem; margin-bottom: 4px; }
+.stat-card { background: rgba(249, 249, 249, 0.8); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #eee; }
+.stat-card small { display: block; color: var(--gold); font-weight: bold; font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; }
+
+.pairing-section { margin: 20px 0; }
+.pairing-section h4 { font-size: 0.7rem; color: #999; letter-spacing: 1.5px; margin-bottom: 10px; text-transform: uppercase; }
+.pairing-container { display: flex; flex-wrap: wrap; gap: 8px; }
+.pairing-tag { 
+    background: #f4f4f4; color: var(--wine-red); padding: 5px 12px; border-radius: 20px; 
+    font-size: 0.8rem; font-weight: 700; border: 1px solid #e0e0e0; transition: 0.2s; 
+}
+.pairing-tag:hover { background: var(--wine-red); color: white; transform: translateY(-2px); }
 
 .hidden { display: none !important; }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .visual-grid { grid-template-columns: 1fr; }
     .wine-item { grid-template-columns: 50px 1fr 70px; }
+    .modal-content { padding: 25px; border-radius: 60px / 15px; }
 }
-.pitch-snippet { 
-    font-size: 0.85rem; 
-    color: #666; 
-    font-style: italic; 
-    margin-top: 6px; 
-    border-left: 3px solid var(--gold); 
-    padding-left: 12px; 
-    transition: color 0.3s;
-}
-
-.wine-item:hover .pitch-snippet {
-    color: var(--wine-red);
-}
-
-/* Ensure the pitch in the modal is prominent */
-.palate-box {
-    background: var(--wine-red);
-    color: white;
-    padding: 18px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 1.2rem;
-    font-family: 'Georgia', serif;
-    box-shadow: 0 4px 15px rgba(74, 14, 14, 0.2);
-}
-/* Pairing Tags Style */
-.pairing-section {
-    margin: 20px 0;
-}
-
-.pairing-section h4 {
-    font-size: 0.7rem;
-    color: #999;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.pairing-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.pairing-tag {
-    background: #f4f4f4;
-    color: var(--wine-red);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border: 1px solid #e0e0e0;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.pairing-tag:hover {
-    background: var(--wine-red);
-    color: white;
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-/* Modal Content spacing adjustment */
-.modal-content {
-    background: white;
-    width: 95%;
-    max-width: 850px;
-    padding: 30px;
-    border-radius: 25px; /* Softer Boston-luxe feel */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-}
-

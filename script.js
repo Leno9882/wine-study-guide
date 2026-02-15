@@ -15,7 +15,7 @@ const wineMenu = {
     ],
     "Red": [
         { id: "043", name: "Pinot Noir, Ken Wright", region: "Willamette, OR", year: "2024", price: 18, classification: "Willamette Valley AVA", method: "Small Batch Oak", climate: "Cool Maritime", altitude: "150m", soil: "Volcanic Jory", coords: [45.31, -123.00], pitch: "Delicate and earthy; tart cherry and volcanic soil.", pairings: ["Truffle Potato Gratin", "Harvest Salad"], vitals: { grapes: "Pinot Noir", composition: ["100% Pinot Noir"], palate: "Tart Cherry, Raspberry, Forest Floor", chartData: [2, 4, 2, 3, 1] } },
-        { id: "585", name: "Pinot Noir, Shea", region: "Willamette, OR", year: "2023", price: 44, classification: "Yamhill-Carlton AVA", method: "French Oak Aged", climate: "Cool Maritime", altitude: "160m", soil: "Willakenzie Sandstone", coords: [45.34, -123.05], pitch: "Muscular Pinot with dark floral notes and silk.", pairings: ["Roasted Chicken", "Beef Wellington"], vitals: { grapes: "Pinot Noir", composition: ["100% Pinot Noir"], palate: "Black Cherry, Violets, Cola", chartData: [3, 3, 3, 4, 2] } },
+        { id: "585", name: "Pinot Noir, Shea", region: "Willamette, OR", year: "2023", price: 44, classification: "Yamhill-Carlton AVA", method: "French Oak Aged", climate: "Cool Maritime", altitude: "160m", soil: "Sandstone", coords: [45.34, -123.05], pitch: "Muscular Pinot with dark floral notes and silk.", pairings: ["Roasted Chicken", "Beef Wellington"], vitals: { grapes: "Pinot Noir", composition: ["100% Pinot Noir"], palate: "Black Cherry, Violets, Cola", chartData: [3, 3, 3, 4, 2] } },
         { id: "019", name: "Sangiovese, Rodano", region: "Tuscany, Italy", year: "2021", price: 16, classification: "DOCG Chianti Classico", method: "Large Oak Cask", climate: "Mediterranean", altitude: "300m", soil: "Galestro", coords: [43.46, 11.23], pitch: "Rustic and savory; dusty cherries and oregano.", pairings: ["Steak Tartare", "Caesar Salad"], vitals: { grapes: "Sangiovese", composition: ["100% Sangiovese"], palate: "Sour Cherry, Oregano, Black Tea", chartData: [3, 5, 4, 4, 1] } },
         { id: "026", name: "Super Tuscan, Montepeloso", region: "Tuscany, Italy", year: "2024", price: 18, classification: "IGT Toscana", method: "Oak Barrique Aged", climate: "Warm Mediterranean", altitude: "50m", soil: "Silty Clay", coords: [42.98, 10.66], pitch: "Sun-drenched and bold; blackberry and dark cocoa.", pairings: ["Grilled Veal Chop", "Beef Wellington"], vitals: { grapes: "Cab / Sangio / Merlot", composition: ["40% Cabernet Sauvignon", "30% Sangiovese", "20% Merlot", "10% Alicante"], palate: "Blackberry, Cocoa, Sage", chartData: [4, 3, 4, 4, 3] } },
         { id: "843", name: "Super Tuscan, Gaja", region: "Tuscany, Italy", year: "2023", price: 37, classification: "IGT Toscana", method: "Oak Barrique Aged", climate: "Warm Mediterranean", altitude: "80m", soil: "Marine Clay", coords: [43.21, 10.59], pitch: "Explosive dark fruit backed by firm tannins.", pairings: ["20 oz Ribeye", "8 oz Filet Mignon"], vitals: { grapes: "Merlot / Syrah / Sangio", composition: ["55% Merlot", "35% Syrah", "10% Sangiovese"], palate: "Plum, Espresso, Cedar", chartData: [5, 4, 4, 5, 4] } },
@@ -37,11 +37,29 @@ const wineMenu = {
 
 let map, chart;
 
+function explainMethod(methodName) {
+    const methods = {
+        "Traditional Method": "Second fermentation happens in the bottle, creating fine bubbles and bread-like flavors.",
+        "Méthode Champenoise": "The strictly regulated Traditional Method used specifically in Champagne, France.",
+        "Charmat Method": "Second fermentation occurs in large tanks to preserve fresh, fruity primary aromas.",
+        "Stainless Steel": "Fermented in steel to keep the wine crisp and bright, showing the pure grape character.",
+        "Unoaked (Steel)": "Pure fruit expression without the vanilla or butter notes often added by wood.",
+        "French Oak Aged": "Aging in high-quality French wood adds subtle spice, tannin, and a silken texture.",
+        "Large Oak Cask": "Massive barrels that allow oxygen exchange without overpowering the wine with wood flavor.",
+        "Oak Barrique Aged": "Small barrels that impart bold flavors of vanilla, tobacco, and cocoa.",
+        "Direct Press": "Immediate pressing of red grapes to extract a pale pink color and light body.",
+        "Estufagem (Heated/Fortified)": "Wine is heated and oxidized in Madeira, making it virtually immortal.",
+        "Botrytised Selection": "Made from grapes affected by 'Noble Rot', concentrating sugars into honeyed sweetness.",
+        "Fortified / Oxidized": "Alcohol is added to stop fermentation, resulting in rich, nutty caramel notes."
+    };
+    alert(`🔍 ${methodName}:\n\n${methods[methodName] || "A specialized winemaking technique."}`);
+}
+
 function getStudyNote(vitals) {
-    let notes = [];
     const d = vitals.chartData; 
+    let notes = [];
     if (d[0] >= 4) notes.push("⚖️ <b>Body:</b> Heavy weight on the tongue.");
-    if (d[1] >= 4) notes.push("⚡ <b>Acidity:</b> Triggers salivation on the sides.");
+    if (d[1] >= 4) notes.push("⚡ <b>Acidity:</b> High salivation on the sides.");
     if (d[2] >= 4) notes.push("🏗️ <b>Tannin:</b> Drying grip on the gums.");
     if (d[3] >= 4) notes.push("🔥 <b>Alcohol:</b> Warmth in the back of the throat.");
     return notes.length > 0 ? notes.join('<br>') : "✨ Harmonious balance.";
@@ -71,31 +89,39 @@ function renderMenu(searchTerm = "") {
 function openTerroir(id) {
     const category = Object.keys(wineMenu).find(cat => wineMenu[cat].some(w => w.id === id));
     const wine = wineMenu[category].find(w => w.id === id);
-    
     const compHtml = wine.vitals.composition.map(c => `<li>${c}</li>`).join('');
 
+    // Updated to match your Boston-luxe CSS structure
     document.getElementById('modalHeader').innerHTML = `
-        <div style="border-left: 4px solid #C5A059; padding-left: 15px;">
-            <small style="color: #666; text-transform: uppercase; letter-spacing: 1px;">${wine.classification}</small>
-            <h1 style="margin: 5px 0;">${wine.name}</h1>
-            <p style="margin: 0; color: #4A0E0E; font-weight: bold;">${wine.region} • ${wine.method}</p>
+        <div style="border-left: 5px solid var(--gold); padding-left: 20px;">
+            <small style="color: #999; text-transform: uppercase; letter-spacing: 2px; font-weight: 800;">${wine.classification}</small>
+            <h1 style="margin: 10px 0; font-family: 'Georgia', serif;">${wine.name}</h1>
+            <p style="margin: 0; color: var(--wine-red); font-weight: bold; display: flex; align-items: center;">
+                ${wine.region} 
+                <button class="method-btn" onclick="event.stopPropagation(); explainMethod('${wine.method}')">${wine.method}</button>
+            </p>
         </div>
-        <ul style="list-style: none; padding: 0; margin: 15px 0; color: #C5A059; font-weight: bold; font-size: 0.9rem;">
+        <ul style="list-style: none; padding: 0; margin: 20px 0; color: var(--gold); font-weight: bold; font-size: 0.95rem;">
             ${compHtml}
         </ul>
     `;
 
     document.getElementById('modalFooter').innerHTML = `
         <div class="palate-box">${wine.vitals.palate}</div>
-        <div class="pairing-container">${wine.pairings.map(p => `<span class="pairing-tag">${p}</span>`).join('')}</div>
         <div class="study-guide-box">
-            <h4>🎓 TERROIR & PHYSICS</h4>
+            <h4>🎓 PHYSICS CHECKLIST</h4>
             <p><strong>Climate:</strong> ${wine.climate}</p>
             <p>${getStudyNote(wine.vitals)}</p>
         </div>
         <div class="stats-grid">
             <div class="stat-card"><small>SOIL</small><strong>${wine.soil}</strong></div>
             <div class="stat-card"><small>ALTITUDE</small><strong>${wine.altitude}</strong></div>
+        </div>
+        <div class="pairing-section">
+            <h4>Perfect Pairings</h4>
+            <div class="pairing-container">
+                ${wine.pairings.map(p => `<span class="pairing-tag">${p}</span>`).join('')}
+            </div>
         </div>
     `;
 
