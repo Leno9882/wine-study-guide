@@ -5,7 +5,7 @@
     --text: #2D3436;
 }
 
-body { background: var(--paper); color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; }
+body { background: var(--paper); color: var(--text); font-family: system-ui, sans-serif; margin: 0; }
 
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: white; border-bottom: 2px solid #eee; position: sticky; top: 0; z-index: 1000; }
 .logo { font-size: 1.4rem; font-weight: 800; color: var(--wine-red); letter-spacing: 1px; }
@@ -16,7 +16,6 @@ body { background: var(--paper); color: var(--text); font-family: system-ui, -ap
 .wine-item { display: grid; grid-template-columns: 60px 1fr 80px 80px; padding: 18px 5%; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; background: white; }
 .wine-item:hover { background: #fffafa; }
 .wine-id { font-weight: bold; color: var(--gold); }
-.wine-price { font-weight: bold; text-align: right; color: var(--wine-red); }
 
 .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(4px); }
 .modal-content { background: white; width: 95%; max-width: 850px; padding: 30px; border-radius: 25px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
@@ -26,22 +25,21 @@ body { background: var(--paper); color: var(--text); font-family: system-ui, -ap
 .chart-container { background: #f9f9f9; border-radius: 12px; padding: 20px; height: 300px; display: flex; justify-content: center; align-items: center; position: relative; }
 #map-container { height: 300px; border-radius: 12px; border: 1px solid #ddd; }
 
-.palate-box { background: var(--wine-red); color: white; padding: 18px; border-radius: 12px; text-align: center; font-size: 1.2rem; font-family: 'Georgia', serif; margin-bottom: 15px; font-weight: bold; box-shadow: 0 4px 15px rgba(74, 14, 14, 0.2); }
-.study-guide-box { background: #fffceb; border-left: 5px solid #ffcc00; padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 15px; border: 1px solid #eee; border-left: 5px solid #ffcc00; }
-.physics-note { font-size: 0.95rem; line-height: 1.5; color: #444; }
-
+.palate-box { background: var(--wine-red); color: white; padding: 18px; border-radius: 12px; text-align: center; font-size: 1.2rem; font-family: 'Georgia', serif; margin-bottom: 15px; font-weight: bold; }
+.study-guide-box { background: #fffceb; border-left: 5px solid #ffcc00; padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 15px; border: 1px solid #eee; }
+.pitch-snippet { font-size: 0.85rem; color: #666; font-style: italic; margin-top: 6px; border-left: 3px solid var(--gold); padding-left: 12px; }
 .pairing-tag { background: #f4f4f4; color: var(--wine-red); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; border: 1px solid #e0e0e0; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
 
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .stat-card { background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #eee; }
 .stat-card small { display: block; color: var(--gold); font-weight: bold; font-size: 0.65rem; margin-bottom: 4px; }
 
+.hidden { display: none !important; }
+
 @media (max-width: 768px) {
     .visual-grid { grid-template-columns: 1fr; }
     .wine-item { grid-template-columns: 50px 1fr 70px; }
-    .wine-year { display: none; }
 }
-.hidden { display: none !important; }
 .pitch-snippet { 
     font-size: 0.85rem; 
     color: #666; 
@@ -113,3 +111,4 @@ body { background: var(--paper); color: var(--text); font-family: system-ui, -ap
     border-radius: 25px; /* Softer Boston-luxe feel */
     box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
+
